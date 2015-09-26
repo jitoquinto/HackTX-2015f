@@ -426,10 +426,10 @@
                                     </p>
                                 </div>
                                 <div class="icon">
-                                    <i class="ion ion-bag"></i>
+                                    <i class="fa fa-users"></i>
                                 </div>
                                 <a href="#" class="small-box-footer">
-                                    More info <i class="fa fa-arrow-circle-right"></i>
+                                    Create Match <i class="fa fa-arrow-circle-right"></i>
                                 </a>
                             </div>
                         </div><!-- ./col -->
@@ -448,7 +448,7 @@
                                     <i class="ion ion-stats-bars"></i>
                                 </div>
                                 <a href="#" class="small-box-footer">
-                                    More info <i class="fa fa-arrow-circle-right"></i>
+                                    See stats <i class="fa fa-arrow-circle-right"></i>
                                 </a>
                             </div>
                         </div><!-- ./col -->
@@ -467,7 +467,7 @@
                                     <i class="ion ion-person-add"></i>
                                 </div>
                                 <a href="#" class="small-box-footer">
-                                    More info <i class="fa fa-arrow-circle-right"></i>
+                                    Full stats <i class="fa fa-arrow-circle-right"></i>
                                 </a>
                             </div>
                         </div><!-- ./col -->
@@ -486,7 +486,7 @@
                                     <i class="ion ion-pie-graph"></i>
                                 </div>
                                 <a href="#" class="small-box-footer">
-                                    More info <i class="fa fa-arrow-circle-right"></i>
+                                    All courts <i class="fa fa-arrow-circle-right"></i>
                                 </a>
                             </div>
                         </div><!-- ./col -->
@@ -502,6 +502,7 @@
 
                     <!-- Main row -->
 
+                    <!-- List row -->
                     <div class="row">
                       <div class="col-lg-3 col-xs-6">
                         <div class="box">
@@ -560,6 +561,7 @@
                                 </div><!-- /.box-footer-->
                             </div>
                       </div>
+
                       <div class="col-lg-3 col-xs-6">
                         <div class="box">
                                 <div class="box-header">
@@ -572,7 +574,7 @@
                                 <div class="box-body">
                                     Box class: <code>.box</code>
                                     <p>
-                                        DATABASE POPULATED
+                                        DATABSE POPULATED
                                     </p>
                                 </div><!-- /.box-body -->
                                 <div class="box-footer">
@@ -581,7 +583,8 @@
                             </div>
                       </div>
 
-                    </div>
+                    </div><!-- End info row-->
+
 
                 </section><!-- /.content -->
             </aside><!-- /.right-side -->
