@@ -154,7 +154,7 @@ $conn = buildConn($configs);
                           </a>
                         </li>
                         <li>
-                          <a href="#">
+                          <a href="courts.php">
                               <i class="fa fa-map-marker"></i> <span> Courts</span>
                           </a>
                         </li>

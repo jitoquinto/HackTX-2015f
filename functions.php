@@ -61,6 +61,14 @@ function fiveUpcomingMatches($conn) {
   return $rows;
 }
 
+function fiveCourts($conn) {
+  $sql = "SELECT * FROM locations LIMIT 5";
+  $stmt = $conn->prepare($sql);
+  $stmt -> execute();
+  $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+  return $rows;
+}
+
 function resolveMatch($conn, $matchInfo) {
   $playerOneId = $matchInfo['player1id'];
   $playerTwoId = $matchInfo['player2id'];
@@ -93,7 +101,7 @@ function countUsers($conn) {
 }
 
 function countCourts($conn) {
-  $sql = "SELECT COUNT(*) FROM courts";
+  $sql = "SELECT COUNT(*) FROM locations";
   $stmt = $conn -> prepare($sql);
   $stmt -> execute();
   $num = $stmt->fetchColumn();
