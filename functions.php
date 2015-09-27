@@ -5,7 +5,6 @@ function buildConn($configs) {
   $sqlUser = $configs['dbUser'];
   $sqlPass = $configs['dbPass'];
   $sqlName = $configs['dbName'];
-
   try {
     $conn = new PDO("mysql:host=$sqlServer;dbname=$sqlName", $sqlUser, $sqlPass);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -42,6 +41,22 @@ function countUsers($conn) {
   $sql = "SELECT COUNT(*) FROM players";
   $stmt = $conn -> prepare($sql);
   $stmt -> execute();
+  $num = $stmt->fetchColumn();
+  return $num;
+}
+
+function countCourts($conn) {
+  $sql = "SELECT COUNT(*) FROM courts";
+  $stmt = $conn -> prepare($sql);
+  $stmt -> execute();
+  $num = $stmt->fetchColumn();
+  return $num;
+}
+
+function countMatches($conn) {
+  $sql = "SELECT COUNT(*) FROM matches WHERE id > :matchId "; // fix later
+  $stmt = $conn -> prepare($sql);
+  $stmt -> execute(array(":matchId" => 1));
   $num = $stmt->fetchColumn();
   return $num;
 }
