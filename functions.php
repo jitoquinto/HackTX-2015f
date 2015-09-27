@@ -45,6 +45,14 @@ function fivePlayedMatches($conn) {
   return $rows;
 }
 
+function getPlayerList($conn) {
+  $sql = "SELECT * FROM players ORDER BY playerName";
+  $stmt = $conn->prepare($sql);
+  $stmt->execute();
+  $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+  return $rows;
+}
+
 function fiveUpcomingMatches($conn) {
   $sql = "SELECT * FROM matches WHERE playDate > NOW() LIMIT 5";
   $stmt = $conn->prepare($sql);

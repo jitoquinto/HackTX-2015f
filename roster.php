@@ -11,7 +11,7 @@ $conn = buildConn($configs);
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>MatchMakr | Dashboard</title>
+        <title>MatchMakr | Roster</title>
         <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
         <!-- bootstrap 3.0.2 -->
         <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -149,7 +149,7 @@ $conn = buildConn($configs);
                           </a>
                         </li>
                         <li>
-                          <a href="roster.php">
+                          <a href="#">
                               <i class="fa fa-list"></i> <span> Player Roster</span>
                           </a>
                         </li>
@@ -173,7 +173,7 @@ $conn = buildConn($configs);
                 <!-- Content Header (Page header) -->
                 <section class="content-header">
                     <h1>
-                        Dashboard
+                        Player Roster
                         <small>Overview</small>
                     </h1>
                     <ol class="breadcrumb">
@@ -185,184 +185,46 @@ $conn = buildConn($configs);
                 <!-- Main content -->
                 <section class="content">
 
-                    <!-- Small boxes (Stat box) -->
-                    <div class="row">
-                        <div class="col-lg-3 col-xs-6">
-                            <!-- small box -->
-                            <div class="small-box bg-aqua">
-                                <div class="inner">
-                                    <h3>
-                                        <?php echo countUpcomingMatches($conn); ?>
-                                    </h3>
-                                    <p>
-                                        Upcoming Matches
-                                    </p>
-                                </div>
-                                <div class="icon">
-                                    <i class="fa fa-users"></i>
-                                </div>
-                                <a href="#" class="small-box-footer">
-                                    Create Match <i class="fa fa-arrow-circle-right"></i>
-                                </a>
-                            </div>
-                        </div><!-- ./col -->
-                        <div class="col-lg-3 col-xs-6">
-                            <!-- small box -->
-                            <div class="small-box bg-green">
-                                <div class="inner">
-                                    <h3>
-                                        53<sup style="font-size: 20px">%</sup>
-                                    </h3>
-                                    <p>
-                                        Win Rate
-                                    </p>
-                                </div>
-                                <div class="icon">
-                                    <i class="ion ion-stats-bars"></i>
-                                </div>
-                                <a href="#" class="small-box-footer">
-                                    See stats <i class="fa fa-arrow-circle-right"></i>
-                                </a>
-                            </div>
-                        </div><!-- ./col -->
-                        <div class="col-lg-3 col-xs-6">
-                            <!-- small box -->
-                            <div class="small-box bg-yellow">
-                                <div class="inner">
-                                    <h3>
-                                        <?php echo countUsers($conn); ?>
-                                    </h3>
-                                    <p>
-                                        Players
-                                    </p>
-                                </div>
-                                <div class="icon">
-                                    <i class="ion ion-person-add"></i>
-                                </div>
-                                <a href="#" class="small-box-footer">
-                                    Full roster <i class="fa fa-arrow-circle-right"></i>
-                                </a>
-                            </div>
-                        </div><!-- ./col -->
-                        <div class="col-lg-3 col-xs-6">
-                            <!-- small box -->
-                            <div class="small-box bg-red">
-                                <div class="inner">
-                                    <h3>
-                                        12
-                                    </h3>
-                                    <p>
-                                        Available Courts
-                                    </p>
-                                </div>
-                                <div class="icon">
-                                    <i class="ion ion-pie-graph"></i>
-                                </div>
-                                <a href="#" class="small-box-footer">
-                                    All courts <i class="fa fa-arrow-circle-right"></i>
-                                </a>
-                            </div>
-                        </div><!-- ./col -->
-                    </div><!-- /.row -->
-
-                    <!-- top row -->
-                    <div class="row">
-                        <div class="col-xs-12 connectedSortable">
-
-                        </div><!-- /.col -->
-                    </div>
-                    <!-- /.row -->
-
-                    <!-- Main row -->
-
-                    <!-- List row -->
-                    <div class="row">
-                      <div class="col-lg-3 col-xs-6">
-                        <div class="box">
+                  <div class="box">
                                 <div class="box-header">
-                                    <h3 class="box-title">Upcoming Matches</h3>
-                                    <div class="box-tools pull-right">
-                                        <button class="btn btn-default btn-sm" data-widget="collapse" data-toggle="tooltip" title="" data-original-title="Collapse"><i class="fa fa-minus"></i></button>
-                                        <button class="btn btn-default btn-sm" data-widget="remove" data-toggle="tooltip" title="" data-original-title="Remove"><i class="fa fa-times"></i></button>
-                                    </div>
-                                </div>
-                                <div class="box-body">
-                                  <ol>
-                                    <?php $upcomingMatches = fiveUpcomingMatches($conn);?>
-                                    <?php foreach($upcomingMatches as $row) {$currMatchInfo = resolveMatch($conn,$row); echo "<a href=\"#\"><li>".$currMatchInfo["playerOne"]." vs. ".$currMatchInfo["playerTwo"]."</li></a>";} ?>
-                                  </ol>
-                                </div><!-- /.box-body -->
-                                <div class="box-footer">
-                                    Showing 5 of <?php echo countTotalMatches($conn); ?> total matches.
-                                </div><!-- /.box-footer-->
-                            </div>
-                      </div>
-                      <div class="col-lg-3 col-xs-6">
-                        <div class="box">
-                                <div class="box-header">
-                                    <h3 class="box-title">Recent Matches</h3>
-                                    <div class="box-tools pull-right">
-                                        <button class="btn btn-default btn-sm" data-widget="collapse" data-toggle="tooltip" title="" data-original-title="Collapse"><i class="fa fa-minus"></i></button>
-                                        <button class="btn btn-default btn-sm" data-widget="remove" data-toggle="tooltip" title="" data-original-title="Remove"><i class="fa fa-times"></i></button>
-                                    </div>
-                                </div>
-                                <div class="box-body">
-                                    <p>
-                                      <ol>
-                                        <?php $recentMatches = fivePlayedMatches($conn);?>
-                                        <?php foreach($recentMatches as $row) {$currMatchInfo = resolveMatch($conn,$row); echo "<a href=\"#\"><li>".$currMatchInfo["playerOne"]." (".$currMatchInfo["playerOneScore"]."pts) vs. ".$currMatchInfo["playerTwo"]." (".$currMatchInfo["playerTwoScore"]."pts)</li></a>";} ?>
-                                      </ol>
-                                    </p>
-                                </div><!-- /.box-body -->
-                                <div class="box-footer">
-                                    Showing 5 of <?php echo countTotalMatches($conn); ?> total matches.
-                                </div><!-- /.box-footer-->
-                            </div>
-                      </div>
-                      <div class="col-lg-3 col-xs-6">
-                        <div class="box">
-                                <div class="box-header">
-                                    <h3 class="box-title">Top Players</h3>
-                                    <div class="box-tools pull-right">
-                                        <button class="btn btn-default btn-sm" data-widget="collapse" data-toggle="tooltip" title="" data-original-title="Collapse"><i class="fa fa-minus"></i></button>
-                                        <button class="btn btn-default btn-sm" data-widget="remove" data-toggle="tooltip" title="" data-original-title="Remove"><i class="fa fa-times"></i></button>
-                                    </div>
-                                </div>
-                                <div class="box-body">
-                                    <p>
-                                      <ol>
-                                        <?php $topPlayerList = bestFive($conn); foreach($topPlayerList as $row) {echo "<a href=\"#\"><li>".$row['playerName']."</li></a>";} ?>
-                                      </ol>
-                                    </p>
-                                </div><!-- /.box-body -->
-                                <div class="box-footer">
-                                    Showing 5 of <?php echo countUsers($conn); ?> players.
-                                </div><!-- /.box-footer-->
-                            </div>
-                      </div>
+                                    <h3 class="box-title">Registered Players</h3>
+                                </div><!-- /.box-header -->
+                                <div class="box-body no-padding">
+                                    <table class="table table-striped">
+                                        <tbody>
 
-                      <div class="col-lg-3 col-xs-6">
-                        <div class="box">
-                                <div class="box-header">
-                                    <h3 class="box-title">Available Courts</h3>
-                                    <div class="box-tools pull-right">
-                                        <button class="btn btn-default btn-sm" data-widget="collapse" data-toggle="tooltip" title="" data-original-title="Collapse"><i class="fa fa-minus"></i></button>
-                                        <button class="btn btn-default btn-sm" data-widget="remove" data-toggle="tooltip" title="" data-original-title="Remove"><i class="fa fa-times"></i></button>
-                                    </div>
-                                </div>
-                                <div class="box-body">
-                                    <p>
-                                        DATABSE POPULATED
-                                    </p>
+                                        <tr>
+                                            <th style="width: 10px">#</th>
+                                            <th>Name</th>
+                                            <th>Gender</th>
+                                            <th>Wins</th>
+                                            <th>Losses</th>
+                                            <th>Skill</th>
+                                            <th style="width: 40px">Ratio</th>
+                                        </tr>
+                                        <?php $playerRoster = getPlayerList($conn);
+                                        foreach($playerRoster as $player) {
+                                          echo "
+                                          <tr>
+                                              <td>".$player['id']."</td>
+                                              <td>".$player['playerName']."</td>
+                                              <td>".$player['gender']."</td>
+                                              <td>".$player['wins']."</td>
+                                              <td>".$player['losses']."</td>
+                                              <td>
+                                                  <div class=\"progress xs\">
+                                                      <div class=\"progress-bar progress-bar-success\" style=\"width:" . (round($player['wins']/$player['losses'],3.2)*15) . "%\"></div>
+                                                  </div>
+                                              </td>
+                                              <td><span class=\"badge bg-red\">".round($player['wins']/$player['losses'],3.2)."</span></td>
+                                          </tr>
+                                          ";
+                                        } ?>
+
+
+                                    </tbody></table>
                                 </div><!-- /.box-body -->
-                                <div class="box-footer">
-                                    Showing X of Y available courts.
-                                </div><!-- /.box-footer-->
                             </div>
-                      </div>
-
-                    </div><!-- End info row-->
-
 
                 </section><!-- /.content -->
             </aside><!-- /.right-side -->
