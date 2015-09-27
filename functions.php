@@ -45,6 +45,16 @@ function getPlayerInfo($conn, $userID) {
   return $rows[0];
 }
 
+function getBestMatch($conn, $userID) {
+  $firstPlayer = getPlayerInfo($conn, $userID);
+  $desiredRatio = $firstPlayer['ratio'];
+  $sql = "SELECT * FROM players ORDER BY abs(ratio - $desiredRatio) LIMIT 2";
+  $stmt = $conn->prepare($sql);
+  $stmt->execute();
+  $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+  return $rows[1];
+}
+
 function fivePlayedMatches($conn) {
   $sql = "SELECT * FROM matches WHERE playDate < NOW() LIMIT 5";
   $stmt = $conn->prepare($sql);

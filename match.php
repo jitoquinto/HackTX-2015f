@@ -48,8 +48,24 @@ $conn = buildConn($configs);
             dataType: "html",   //expect html to be returned
             success: function(response){
                 $("#player1data").html(response);
-                //alert(response);
-            }
+                $.ajax({
+                  type: "GET",
+                  url: "getName.php?id=" + userID,
+                  dataType: "html",
+                  success: function(response){
+                    $("#player2name").html(response);
+                  }
+                });
+
+                  $.ajax({    //create an ajax request to load_page.php
+                  type: "GET",
+                  url: "matchData.php?id=" + userID +"&m=1",
+                  dataType: "html",   //expect html to be returned
+                  success: function(response){
+                    $("#player2data").html(response);
+                  }
+                });
+              }
 
           });
         });
@@ -258,21 +274,17 @@ $conn = buildConn($configs);
                               <h4><span id="playerName">Player 1</span></h4>
                             </div>
                             <div class="col-lg-6 col-xs-6 text-center">
-                              <span id="player2name">Player 2</span>
+                              <h4><span id="player2name">Player 2</span></h4>
                             </div>
                           </h4>
                           </div>
                           <div class="row">
                             <div class="col-lg-6 col-xs-6">
-                              <p style="muted" id="player1data">
-                              </p>
+                              <span id="player1data">
+                              </span>
                             </div>
                             <div class="col-lg-6 col-xs-6">
-                              <p style="muted">
-                                Wins: <span id="player2wins"></span></br>
-                                Losses: <span id="player2losses"></span></br>
-                                Ratio: <span id="player2ratio"></span></br>
-                              </p>
+                              <span id="player2data"></span>
                             </div>
                           </div>
                         </div><!-- /.box-body -->

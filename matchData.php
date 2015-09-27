@@ -11,8 +11,16 @@ if(empty($_GET)) {
   die();
 }
 
-$playerInfo = getPlayerInfo($conn, $_GET['id']);
+if(empty($_GET['m'])) {
+  $playerInfo = getPlayerInfo($conn, $_GET['id']);
+}
+else{
+  $playerInfo = getBestMatch($conn, $_GET['id']);
+}
+
+
 echo '<p class="muted text-center">';
 echo "Wins: " . $playerInfo['wins'] . "</br>";
 echo "Losses: " . $playerInfo['losses'] . "</br>";
+echo '</p>';
 ?>
