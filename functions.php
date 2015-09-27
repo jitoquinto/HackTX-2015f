@@ -37,6 +37,14 @@ function bestFive($conn) {
   return $rows;
 }
 
+function fiveMatches($conn) {
+  $sql = "SELECT * FROM matches LIMIT 5";
+  $stmt = $conn->prepare($sql);
+  $stmt -> execute();
+  $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+  return $rows;
+}
+
 function countUsers($conn) {
   $sql = "SELECT COUNT(*) FROM players";
   $stmt = $conn -> prepare($sql);
@@ -53,12 +61,21 @@ function countCourts($conn) {
   return $num;
 }
 
-function countMatches($conn) {
-  $sql = "SELECT COUNT(*) FROM matches WHERE playDate < NOW()"; // fix later
+function countUpcomingMatches($conn) {
+  $sql = "SELECT COUNT(*) FROM matches WHERE playDate > NOW()"; // fix later
   $stmt = $conn -> prepare($sql);
   $stmt -> execute();
   $num = $stmt->fetchColumn();
   return $num;
 }
+
+function countTotalMatches($conn) {
+  $sql = "SELECT COUNT(*) FROM matches";
+  $stmt = $conn -> prepare($sql);
+  $stmt -> execute();
+  $num = $stmt->fetchColumn();
+  return $num;
+}
+
 
 ?>

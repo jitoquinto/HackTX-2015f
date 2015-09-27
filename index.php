@@ -140,7 +140,7 @@ $conn = buildConn($configs);
                         </li>
                         <li>
                           <a href="#">
-                              <i class="fa fa-check"></i> <span> Create Match</span>
+                              <i class="fa fa-check"></i> <span> Schedule a Match</span>
                           </a>
                         </li>
                         <li>
@@ -290,7 +290,7 @@ $conn = buildConn($configs);
                                     DATABASE POPULATED
                                 </div><!-- /.box-body -->
                                 <div class="box-footer">
-                                    Showing X of Y total matches.
+                                    Showing X of <?php echo countTotalMatches($conn); ?> total matches.
                                 </div><!-- /.box-footer-->
                             </div>
                       </div>
@@ -305,11 +305,14 @@ $conn = buildConn($configs);
                                 </div>
                                 <div class="box-body">
                                     <p>
-                                        DATABASE POPULATED
+                                      <ol>
+                                        <?php $recentMatches = fiveMatches($conn);?>
+                                        <?php  foreach($recentMatches as $row) {echo "<a href=\"#\"><li>Match ID: ".$row['id']."</li></a>";} ?>
+                                      </ol>
                                     </p>
                                 </div><!-- /.box-body -->
                                 <div class="box-footer">
-                                    Showing X of Y total matches.
+                                    Showing 5 of <?php echo countTotalMatches($conn); ?> total matches.
                                 </div><!-- /.box-footer-->
                             </div>
                       </div>
