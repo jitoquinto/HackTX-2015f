@@ -227,7 +227,7 @@ $conn = buildConn($configs);
                 <section class="content">
 
                 <div class="row">
-                  <div class="col-lg-6 col-xs-6">
+                  <div class="col-lg-6 col-xs-12">
                     <div class="box box-solid bg-aqua">
                         <div class="box-header">
                             <h3 class="box-title">Find a match</h3>
@@ -277,7 +277,7 @@ $conn = buildConn($configs);
 
                     </div>
                   </div>
-                  <div class="col-lg-6 col-xs-6">
+                  <div class="col-lg-6 col-xs-12">
                     <div class="box box-solid">
                         <div class="box-header">
                             <h3 class="box-title">Results</h3>
@@ -415,27 +415,27 @@ $conn = buildConn($configs);
                     //Random default events
                     events: [
                         {
-                            title: 'All Day Event',
+                            title: 'Court Available',
                             start: new Date(y, m, 1),
                             backgroundColor: "#f56954", //red
                             borderColor: "#f56954" //red
                         },
                         {
-                            title: 'Long Event',
+                            title: 'Court Available',
                             start: new Date(y, m, d - 5),
                             end: new Date(y, m, d - 2),
                             backgroundColor: "#f39c12", //yellow
                             borderColor: "#f39c12" //yellow
                         },
                         {
-                            title: 'Meeting',
+                            title: 'Court Available',
                             start: new Date(y, m, d, 10, 30),
                             allDay: false,
                             backgroundColor: "#0073b7", //Blue
                             borderColor: "#0073b7" //Blue
                         },
                         {
-                            title: 'Lunch',
+                            title: 'Court Available',
                             start: new Date(y, m, d, 12, 0),
                             end: new Date(y, m, d, 14, 0),
                             allDay: false,
@@ -443,7 +443,7 @@ $conn = buildConn($configs);
                             borderColor: "#00c0ef" //Info (aqua)
                         },
                         {
-                            title: 'Birthday Party',
+                            title: 'Court Available',
                             start: new Date(y, m, d + 1, 19, 0),
                             end: new Date(y, m, d + 1, 22, 30),
                             allDay: false,
@@ -451,7 +451,7 @@ $conn = buildConn($configs);
                             borderColor: "#00a65a" //Success (green)
                         },
                         {
-                            title: 'Click for Google',
+                            title: 'Court Available',
                             start: new Date(y, m, 28),
                             end: new Date(y, m, 29),
                             url: 'http://google.com/',

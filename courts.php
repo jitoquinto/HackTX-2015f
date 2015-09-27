@@ -144,7 +144,7 @@ $conn = buildConn($configs);
                           </a>
                         </li>
                         <li>
-                          <a href="#">
+                          <a href="roster.php">
                               <i class="fa fa-bar-chart-o"></i> <span> Statistics</span>
                           </a>
                         </li>
