@@ -201,7 +201,7 @@ $conn = buildConn($configs);
                                 <div class="icon">
                                     <i class="fa fa-users"></i>
                                 </div>
-                                <a href="#" class="small-box-footer">
+                                <a href="match.php" class="small-box-footer">
                                     Create Match <i class="fa fa-arrow-circle-right"></i>
                                 </a>
                             </div>
