@@ -192,7 +192,7 @@ $conn = buildConn($configs);
                             <div class="small-box bg-aqua">
                                 <div class="inner">
                                     <h3>
-                                        10
+                                        <?php echo countUpcomingMatches($conn); ?>
                                     </h3>
                                     <p>
                                         Upcoming Matches

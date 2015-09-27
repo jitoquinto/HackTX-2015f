@@ -54,9 +54,9 @@ function countCourts($conn) {
 }
 
 function countMatches($conn) {
-  $sql = "SELECT COUNT(*) FROM matches WHERE id > :matchId "; // fix later
+  $sql = "SELECT COUNT(*) FROM matches WHERE playDate < NOW()"; // fix later
   $stmt = $conn -> prepare($sql);
-  $stmt -> execute(array(":matchId" => 1));
+  $stmt -> execute();
   $num = $stmt->fetchColumn();
   return $num;
 }
