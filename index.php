@@ -5,7 +5,6 @@ require 'functions.php';
 
 $conn = buildConn($configs);
 
-countUsers($conn);
 ?>
 
 <!DOCTYPE html>
@@ -231,7 +230,7 @@ countUsers($conn);
                             <div class="small-box bg-yellow">
                                 <div class="inner">
                                     <h3>
-                                        44
+                                        <?php echo countUsers($conn); ?>
                                     </h3>
                                     <p>
                                         Players
