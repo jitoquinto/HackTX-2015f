@@ -42,7 +42,7 @@ $conn = buildConn($configs);
     <body class="skin-blue">
         <!-- header logo: style can be found in header.less -->
         <header class="header">
-            <a href="index.html" class="logo">
+            <a href="index.php" class="logo">
                 <!-- Add the class icon to your logo image or logo icon to add the margining -->
                 MatchMakr
             </a>
@@ -187,7 +187,7 @@ $conn = buildConn($configs);
 
                     <!-- Small boxes (Stat box) -->
                     <div class="row">
-                        <div class="col-lg-3 col-xs-6">
+                        <div class="col-lg-3 col-xs-12">
                             <!-- small box -->
                             <div class="small-box bg-aqua">
                                 <div class="inner">
@@ -206,7 +206,7 @@ $conn = buildConn($configs);
                                 </a>
                             </div>
                         </div><!-- ./col -->
-                        <div class="col-lg-3 col-xs-6">
+                        <div class="col-lg-3 col-xs-12">
                             <!-- small box -->
                             <div class="small-box bg-green">
                                 <div class="inner">
@@ -225,7 +225,7 @@ $conn = buildConn($configs);
                                 </a>
                             </div>
                         </div><!-- ./col -->
-                        <div class="col-lg-3 col-xs-6">
+                        <div class="col-lg-3 col-xs-12">
                             <!-- small box -->
                             <div class="small-box bg-yellow">
                                 <div class="inner">
@@ -244,7 +244,7 @@ $conn = buildConn($configs);
                                 </a>
                             </div>
                         </div><!-- ./col -->
-                        <div class="col-lg-3 col-xs-6">
+                        <div class="col-lg-3 col-xs-12">
                             <!-- small box -->
                             <div class="small-box bg-red">
                                 <div class="inner">
@@ -258,7 +258,7 @@ $conn = buildConn($configs);
                                 <div class="icon">
                                     <i class="ion ion-pie-graph"></i>
                                 </div>
-                                <a href="#" class="small-box-footer">
+                                <a href="courts.php" class="small-box-footer">
                                     All courts <i class="fa fa-arrow-circle-right"></i>
                                 </a>
                             </div>

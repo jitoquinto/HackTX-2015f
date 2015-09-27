@@ -45,6 +45,14 @@ function fivePlayedMatches($conn) {
   return $rows;
 }
 
+function getCourtList($conn) {
+  $sql = "SELECT * FROM locations ORDER BY locName";
+  $stmt = $conn->prepare($sql);
+  $stmt->execute();
+  $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+  return $rows;
+}
+
 function getPlayerList($conn) {
   $sql = "SELECT * FROM players ORDER BY playerName";
   $stmt = $conn->prepare($sql);

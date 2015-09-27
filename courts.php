@@ -42,7 +42,7 @@ $conn = buildConn($configs);
     <body class="skin-blue">
         <!-- header logo: style can be found in header.less -->
         <header class="header">
-            <a href="index.html" class="logo">
+            <a href="index.php" class="logo">
                 <!-- Add the class icon to your logo image or logo icon to add the margining -->
                 MatchMakr
             </a>
@@ -173,7 +173,7 @@ $conn = buildConn($configs);
                 <!-- Content Header (Page header) -->
                 <section class="content-header">
                     <h1>
-                        Player Roster
+                        Registered Courts
                         <small>Overview</small>
                     </h1>
                     <ol class="breadcrumb">
@@ -187,36 +187,34 @@ $conn = buildConn($configs);
 
                   <div class="box">
                                 <div class="box-header">
-                                    <h3 class="box-title">Registered Players</h3>
+                                    <h3 class="box-title">Courts</h3>
                                 </div><!-- /.box-header -->
                                 <div class="box-body no-padding">
                                     <table class="table table-striped">
                                         <tbody>
 
                                         <tr>
-                                            <th style="width: 10px">#</th>
                                             <th>Name</th>
-                                            <th>Gender</th>
-                                            <th>Wins</th>
-                                            <th>Losses</th>
-                                            <th>Skill</th>
-                                            <th style="width: 40px">Ratio</th>
+                                            <th>Available Courts</th>
+                                            <th>Open Time</th>
+                                            <th>Close Time</th>
+                                            <th>Skill Level</th>
+                                            <th style="width: 40px">Reputation</th>
                                         </tr>
-                                        <?php $playerRoster = getPlayerList($conn);
-                                        foreach($playerRoster as $player) {
+                                        <?php $locations = getCourtList($conn);
+                                        foreach($locations as $thisCourt) {
                                           echo "
                                           <tr>
-                                              <td>".$player['id']."</td>
-                                              <td>".$player['playerName']."</td>
-                                              <td>".$player['gender']."</td>
-                                              <td>".$player['wins']."</td>
-                                              <td>".$player['losses']."</td>
+                                              <td>".$thisCourt['locName']."</td>
+                                              <td>".$thisCourt['numCourts']."</td>
+                                              <td>\"7:00am\"</td>
+                                              <td>\"5:00pm\"</td>
                                               <td>
                                                   <div class=\"progress xs\">
-                                                      <div class=\"progress-bar progress-bar-success\" style=\"width:" . (round($player['wins']/$player['losses'],3.2)*15) . "%\"></div>
+                                                      <div class=\"progress-bar progress-bar-success\" style=\"width:" . $thisCourt['reputation'] ."%\"></div>
                                                   </div>
                                               </td>
-                                              <td><span class=\"badge bg-red\">".round($player['wins']/$player['losses'],3.2)."</span></td>
+                                              <td><span class=\"badge bg-red\">".$thisCourt['reputation']."</span></td>
                                           </tr>
                                           ";
                                         } ?>
