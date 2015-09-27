@@ -37,17 +37,48 @@ function bestFive($conn) {
   return $rows;
 }
 
-function fiveMatches($conn) {
-  $sql = "SELECT * FROM matches LIMIT 5";
+function fivePlayedMatches($conn) {
+  $sql = "SELECT * FROM matches WHERE playDate < NOW() LIMIT 5";
   $stmt = $conn->prepare($sql);
   $stmt -> execute();
   $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
   return $rows;
 }
 
+function fiveUpcomingMatches($conn) {
+  $sql = "SELECT * FROM matches WHERE playDate > NOW() LIMIT 5";
+  $stmt = $conn->prepare($sql);
+  $stmt -> execute();
+  $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+  return $rows;
+}
+
+function resolveMatch($conn, $matchInfo) {
+  $playerOneId = $matchInfo['player1id'];
+  $playerTwoId = $matchInfo['player2id'];
+  $sql = "SELECT playerName FROM players WHERE id = :playerId LIMIT 1";
+  $stmt = $conn->prepare($sql);
+  $stmt -> execute(array(":playerId" => $playerOneId));
+  $rows = $stmt->fetchColumn();
+  $playerOneName = $rows;
+  $sql = "SELECT playerName FROM players WHERE id = :playerId LIMIT 1";
+  $stmt = $conn->prepare($sql);
+  $stmt -> execute(array(":playerId" => $playerTwoId));
+  $rows = $stmt->fetchColumn();
+  $playerTwoName = $rows;
+
+  return array(
+    "playerOne" => $playerOneName,
+    "playerTwo" => $playerTwoName,
+    "playerOneScore" => $matchInfo['score1'],
+    "playerTwoScore" => $matchInfo['score2']
+    );
+
+}
+
 function countUsers($conn) {
   $sql = "SELECT COUNT(*) FROM players";
-  $stmt = $conn -> prepare($sql);
+  $stmt = $conn->prepare($sql);
   $stmt -> execute();
   $num = $stmt->fetchColumn();
   return $num;

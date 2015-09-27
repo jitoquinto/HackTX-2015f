@@ -287,10 +287,13 @@ $conn = buildConn($configs);
                                     </div>
                                 </div>
                                 <div class="box-body">
-                                    DATABASE POPULATED
+                                  <ol>
+                                    <?php $upcomingMatches = fiveUpcomingMatches($conn);?>
+                                    <?php foreach($upcomingMatches as $row) {$currMatchInfo = resolveMatch($conn,$row); echo "<a href=\"#\"><li>".$currMatchInfo["playerOne"]." vs. ".$currMatchInfo["playerTwo"]."</li></a>";} ?>
+                                  </ol>
                                 </div><!-- /.box-body -->
                                 <div class="box-footer">
-                                    Showing X of <?php echo countTotalMatches($conn); ?> total matches.
+                                    Showing 5 of <?php echo countTotalMatches($conn); ?> total matches.
                                 </div><!-- /.box-footer-->
                             </div>
                       </div>
@@ -306,8 +309,8 @@ $conn = buildConn($configs);
                                 <div class="box-body">
                                     <p>
                                       <ol>
-                                        <?php $recentMatches = fiveMatches($conn);?>
-                                        <?php  foreach($recentMatches as $row) {echo "<a href=\"#\"><li>Match ID: ".$row['id']."</li></a>";} ?>
+                                        <?php $recentMatches = fivePlayedMatches($conn);?>
+                                        <?php foreach($recentMatches as $row) {$currMatchInfo = resolveMatch($conn,$row); echo "<a href=\"#\"><li>".$currMatchInfo["playerOne"]." (".$currMatchInfo["playerOneScore"]."pts) vs. ".$currMatchInfo["playerTwo"]." (".$currMatchInfo["playerTwoScore"]."pts)</li></a>";} ?>
                                       </ol>
                                     </p>
                                 </div><!-- /.box-body -->
