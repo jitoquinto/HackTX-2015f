@@ -207,8 +207,8 @@ $conn = buildConn($configs);
                                           <tr>
                                               <td>".$thisCourt['locName']."</td>
                                               <td>".$thisCourt['numCourts']."</td>
-                                              <td>\"7:00am\"</td>
-                                              <td>\"5:00pm\"</td>
+                                              <td>7:00am</td>
+                                              <td>5:00pm</td>
                                               <td>
                                                   <div class=\"progress xs\">
                                                       <div class=\"progress-bar progress-bar-success\" style=\"width:" . $thisCourt['reputation'] ."%\"></div>

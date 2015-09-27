@@ -11,7 +11,7 @@ $conn = buildConn($configs);
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>MatchMakr | Roster</title>
+        <title>MatchMakr | Match</title>
         <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
         <!-- bootstrap 3.0.2 -->
         <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -32,6 +32,30 @@ $conn = buildConn($configs);
         <!-- Theme style -->
         <link href="css/AdminLTE.css" rel="stylesheet" type="text/css" />
         <link rel="manifest" href="manifest.json">
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+        <script type="text/javascript">
+        $(document).ready(function(){
+          $('#playerSelect').on('change', function() {
+            userID = this.value;
+            //alert(userID);
+            var fullName = $('#playerSelect option:selected').text();
+            $('#playerName').html(fullName);
+            $.ajax({    //create an ajax request to load_page.php
+            type: "GET",
+            url: "matchData.php?id=" + userID,
+            dataType: "html",   //expect html to be returned
+            success: function(response){
+                $("#player1data").html(response);
+                //alert(response);
+            }
+
+          });
+        });
+      });
+        </script>
+
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
@@ -154,7 +178,7 @@ $conn = buildConn($configs);
                           </a>
                         </li>
                         <li>
-                          <a href="courts.php">
+                          <a href="#">
                               <i class="fa fa-map-marker"></i> <span> Courts</span>
                           </a>
                         </li>
@@ -173,58 +197,89 @@ $conn = buildConn($configs);
                 <!-- Content Header (Page header) -->
                 <section class="content-header">
                     <h1>
-                        Player Roster
-                        <small>Overview</small>
+                        Match Scheduler
+                        <small></small>
                     </h1>
                     <ol class="breadcrumb">
                         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                        <li class="active">Dashboard</li>
+                        <li class="active">Match Maker</li>
                     </ol>
                 </section>
 
                 <!-- Main content -->
                 <section class="content">
 
-                  <div class="box">
-                                <div class="box-header">
-                                    <h3 class="box-title">Registered Players</h3>
-                                </div><!-- /.box-header -->
-                                <div class="box-body no-padding">
-                                    <table class="table table-striped">
-                                        <tbody>
+                <div class="row">
+                  <div class="col-lg-6 col-xs-6">
+                    <div class="box box-solid bg-aqua">
+                        <div class="box-header">
+                            <h3 class="box-title">Find a match</h3>
+                        </div>
+                        <div class="box-body">
+                          <div class="form-group">
+                              <label>Player</label>
+                              <select class="form-control" id="playerSelect">
+                                  <option>Player</option>
+                                  <?php $playerList = getPlayerList($conn); foreach($playerList as $player) {
+                                    echo '<option value="'.$player['id'].'">'.$player['playerName'];
+                                  } ?>
+                              </select>
 
-                                        <tr>
-                                            <th style="width: 10px">#</th>
-                                            <th>Name</th>
-                                            <th>Gender</th>
-                                            <th>Wins</th>
-                                            <th>Losses</th>
-                                            <th>Skill</th>
-                                            <th style="width: 40px">Ratio</th>
-                                        </tr>
-                                        <?php $playerRoster = getPlayerList($conn);
-                                        foreach($playerRoster as $player) {
-                                          echo "
-                                          <tr>
-                                              <td>".$player['id']."</td>
-                                              <td>".$player['playerName']."</td>
-                                              <td>".$player['gender']."</td>
-                                              <td>".$player['wins']."</td>
-                                              <td>".$player['losses']."</td>
-                                              <td>
-                                                  <div class=\"progress xs\">
-                                                      <div class=\"progress-bar progress-bar-success\" style=\"width:" . (round($player['wins']/$player['losses'],3.2)*15) . "%\"></div>
-                                                  </div>
-                                              </td>
-                                              <td><span class=\"badge bg-red\">".round($player['wins']/$player['losses'],3.2)."</span></td>
-                                          </tr>
-                                          ";
-                                        } ?>
+                          </div>
+                          <div class="form-group">
+                              <label>Location</label>
+                              <select class="form-control">
+                                <option>Court</option>
+                                  <?php $courtList = getCourtList($conn); foreach($courtList as $court) {
+                                    echo '<option value="'.$court['id'].'">'.$court['locName'];
+                                  } ?>
+                              </select>
+
+                          </div>
+                          <button id="button1" class="btn btn-success btn-block"><i class="fa fa-check"></i> Match</button>
+                        </div><!-- /.box-body -->
 
 
-                                    </tbody></table>
-                                </div><!-- /.box-body -->
+                    </div>
+                  </div>
+                  <div class="col-lg-6 col-xs-6">
+                    <div class="box box-solid">
+                        <div class="box-header">
+                            <h3 class="box-title">Results</h3>
+                            <div class="box-tools pull-right">
+                                <button class="btn btn-default btn-sm" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                                <button class="btn btn-default btn-sm" data-widget="remove"><i class="fa fa-times"></i></button>
                             </div>
+                        </div>
+                        <div class="box-body">
+                          <div class="row">
+
+                            <div class="col-lg-6 col-xs-6 text-center">
+                              <h4><span id="playerName">Player 1</span></h4>
+                            </div>
+                            <div class="col-lg-6 col-xs-6 text-center">
+                              <span id="player2name">Player 2</span>
+                            </div>
+                          </h4>
+                          </div>
+                          <div class="row">
+                            <div class="col-lg-6 col-xs-6">
+                              <p style="muted" id="player1data">
+                              </p>
+                            </div>
+                            <div class="col-lg-6 col-xs-6">
+                              <p style="muted">
+                                Wins: <span id="player2wins"></span></br>
+                                Losses: <span id="player2losses"></span></br>
+                                Ratio: <span id="player2ratio"></span></br>
+                              </p>
+                            </div>
+                          </div>
+                        </div><!-- /.box-body -->
+                    </div>
+                  </div>
+                </div>
+                </div>
 
                 </section><!-- /.content -->
             </aside><!-- /.right-side -->

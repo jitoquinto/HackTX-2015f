@@ -37,6 +37,14 @@ function bestFive($conn) {
   return $rows;
 }
 
+function getPlayerInfo($conn, $userID) {
+  $sql = "SELECT * FROM players WHERE id = :userID LIMIT 1";
+  $stmt = $conn->prepare($sql);
+  $stmt->execute(array(":userID"=>$userID));
+  $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+  return $rows[0];
+}
+
 function fivePlayedMatches($conn) {
   $sql = "SELECT * FROM matches WHERE playDate < NOW() LIMIT 5";
   $stmt = $conn->prepare($sql);

@@ -139,7 +139,7 @@ $conn = buildConn($configs);
                             </a>
                         </li>
                         <li>
-                          <a href="#">
+                          <a href="match.php">
                               <i class="fa fa-check"></i> <span> Schedule a Match</span>
                           </a>
                         </li>
