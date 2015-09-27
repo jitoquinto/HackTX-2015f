@@ -19,12 +19,31 @@ function buildConn($configs) {
 return $conn;
 }
 
+
+// pull an array of the best five players based on ratio
+function bestFive($conn) {
+  try {
+    $sql = "SELECT * FROM players ORDER BY ratio DESC LIMIT 5";
+    $stmt = $conn->prepare($sql);
+    $stmt -> execute();
+    $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    // foreach ($rows as $row) {
+    //     echo $row['playerName'];
+    // }
+  }
+  catch(PDOException $e) {
+    echo "Statement failed: " . $e->getMessage();
+    die();
+  }
+  return $rows;
+}
+
 function countUsers($conn) {
-  $sql = "SELECT COUNT(*) from players";
+  $sql = "SELECT COUNT(*) FROM players";
   $stmt = $conn -> prepare($sql);
   $stmt -> execute();
   $num = $stmt->fetchColumn();
-  echo $num;
+  return $num;
 }
 
 ?>

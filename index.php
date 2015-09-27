@@ -240,7 +240,7 @@ $conn = buildConn($configs);
                                     <i class="ion ion-person-add"></i>
                                 </div>
                                 <a href="#" class="small-box-footer">
-                                    Full stats <i class="fa fa-arrow-circle-right"></i>
+                                    Full roster <i class="fa fa-arrow-circle-right"></i>
                                 </a>
                             </div>
                         </div><!-- ./col -->
@@ -316,7 +316,7 @@ $conn = buildConn($configs);
                       <div class="col-lg-3 col-xs-6">
                         <div class="box">
                                 <div class="box-header">
-                                    <h3 class="box-title">Current Roster</h3>
+                                    <h3 class="box-title">Top Players</h3>
                                     <div class="box-tools pull-right">
                                         <button class="btn btn-default btn-sm" data-widget="collapse" data-toggle="tooltip" title="" data-original-title="Collapse"><i class="fa fa-minus"></i></button>
                                         <button class="btn btn-default btn-sm" data-widget="remove" data-toggle="tooltip" title="" data-original-title="Remove"><i class="fa fa-times"></i></button>
@@ -324,11 +324,13 @@ $conn = buildConn($configs);
                                 </div>
                                 <div class="box-body">
                                     <p>
-                                        DATABSE POPULATED
+                                      <ol>
+                                        <?php $topPlayerList = bestFive($conn); foreach($topPlayerList as $row) {echo "<a href=\"#\"><li>".$row['playerName']."</li></a>";} ?>
+                                      </ol>
                                     </p>
                                 </div><!-- /.box-body -->
                                 <div class="box-footer">
-                                    Showing X of Y players.
+                                    Showing 5 of <?php echo countUsers($conn); ?> players.
                                 </div><!-- /.box-footer-->
                             </div>
                       </div>
