@@ -1,8 +1,11 @@
 <?php
 define('DIRECT', true);
-$configs = require_once('config.php');
+$configs = require_once('./config.php');
 require 'functions.php';
-buildConn($config);
+
+$conn = buildConn($configs);
+
+countUsers($conn);
 ?>
 
 <!DOCTYPE html>
